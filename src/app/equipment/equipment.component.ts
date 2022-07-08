@@ -27,5 +27,34 @@ export class EquipmentComponent implements OnInit {
    ngOnInit() { }
 
    // Code your addItem function here:
+   addItem(item) {
+    this.cargoHold.push(item);
+    this.cargoMass = this.cargoMass + item.mass;
+    if (this.cargoMass >= (this.maximumAllowedMass-200)) {
+      return true;
+    } else {
+      return false;
+    }
+   }
    
+   noMoreSpace() {
+    if (this.cargoHold.length === this.maxItems) {
+      return true;
+    } else {
+      return false;
+    }
+   }
+
+   tooMuchMass(item) {
+    if (this.cargoMass + item.mass > this.maximumAllowedMass) {
+      return true;
+    } else {
+      return false;
+    }
+   }
+
+   emptyHold() {
+    this.cargoHold = [];
+    this.cargoMass = 0;
+   }
 }
